@@ -14,35 +14,45 @@ get("/") do
 end
 
 get("/dice/2/6") do
-  first_dice = rand(1..6)
-  second_dice = rand(1..6)
-  sum = first_dice + second_dice
+  @rolls = []
 
-  @outcome = "You rolled a #{first_dice} and a #{second_dice} for a total of #{sum}."
+  2.times do
+    dice = rand(1..6)
+    @rolls.push(dice)
+  end
+  
   erb(:two_6)
 end
 
 get("/dice/2/10") do
-  first_dice = rand(1..10)
-  second_dice = rand(1..10)
-  sum = first_dice + second_dice
+  @rolls = []
 
-  @outcome = "You rolled a #{first_dice} and a #{second_dice} for a total of #{sum}."
+  2.times do
+    dice = rand(1..10)
+    @rolls.push(dice)
+  end
+  
   erb(:two_10)
 end
 
 get("/dice/1/20") do
-  dice = rand(1..20)
-  @outcome = "You rolled a #{dice}"
+  @rolls = []
+
+  1.times do
+    dice = rand(1..20)
+    @rolls.push(dice)
+  end
+  
   erb(:one_20)
 end
 
 get("/dice/5/4") do
-  dices = []
-  4.times do |dice|
+  @rolls = []
+
+  5.times do
     dice = rand(1..4)
-    dices.push(dice)
+    @rolls.push(dice)
   end
-  @outcome = dices.map { |num| "<p>#{num}</p>" }.join
+  
   erb(:five_4)
 end
