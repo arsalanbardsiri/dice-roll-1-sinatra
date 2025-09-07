@@ -25,11 +25,8 @@ get("/dice/2/6") do
   second_dice = rand(1..6)
   sum = first_dice + second_dice
 
-  outcome = "You rolled a #{first_dice} and a #{second_dice} for a total of #{sum}."
-
-  body = +"<h1>1d20</h1>"
-  body << "<p>#{outcome}</p>"
-  body
+  @outcome = "You rolled a #{first_dice} and a #{second_dice} for a total of #{sum}."
+  erb(:two_6)
 end
 
 get("/dice/2/10") do
@@ -37,20 +34,14 @@ get("/dice/2/10") do
   second_dice = rand(1..10)
   sum = first_dice + second_dice
 
-  outcome = "You rolled a #{first_dice} and a #{second_dice} for a total of #{sum}."
-
-  body = +"<h1>1d20</h1>"
-  body << "<p>#{outcome}</p>"
-  body
+  @outcome = "You rolled a #{first_dice} and a #{second_dice} for a total of #{sum}."
+  erb(:two_10)
 end
 
 get("/dice/1/20") do
   dice = rand(1..20)
-  outcome = "You rolled a #{dice}"
-
-  body = +"<h1>1d20</h1>"
-  body << "<p>#{outcome}</p>"
-  body
+  @outcome = "You rolled a #{dice}"
+  erb(:one_20) 
 end
 
 get("/dice/5/4") do
@@ -59,7 +50,6 @@ get("/dice/5/4") do
     dice = rand(1..4)
     dices.push(dice)
   end
-  body = +"<h1>1d20</h1>"
-  body << dices.map { |num| "<p>#{num}</p>" }.join
-  body
+  @outcome = dices.map { |num| "<p>#{num}</p>" }.join
+  erb(:five_4)
 end
